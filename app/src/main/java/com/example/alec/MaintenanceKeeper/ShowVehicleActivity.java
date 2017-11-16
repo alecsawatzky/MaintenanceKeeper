@@ -1,5 +1,6 @@
 package com.example.alec.MaintenanceKeeper;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -7,8 +8,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,6 +40,9 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private GoogleApiClient mGoogleApiClient;
     private FirebaseRecyclerAdapter<Vehicle, VehicleViewHolder> mFirebaseAdapter;
     private ArrayList<Service> services;
+    private ListView listView;
+    private ItemAdapter adapter;
+    private FirebaseDatabase database;
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
@@ -71,10 +79,65 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         tvMake = (TextView) findViewById(R.id.tvMake);
         tvModel = (TextView) findViewById(R.id.tvModel);
         tvYear = (TextView) findViewById(R.id.tvYear);
+        listView = (ListView) findViewById(R.id.list_view);
 
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database = FirebaseDatabase.getInstance();
+
+    }
+
+    private void setupActionBar()
+    {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null)
+        {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle("Vehicle Details");
+        }
+    }
+
+
+    // An adapter to link the Array List to the ListView.
+    private class ItemAdapter extends ArrayAdapter<Service> {
+
+        private ArrayList<Service> items;
+
+        public ItemAdapter(Context context, int textViewResourceId, ArrayList<Service> items) {
+            super(context, textViewResourceId, items);
+            this.items = items;
+        }
+
+        //This method is called once for every item in the ArrayList as the list is loaded.
+        //It returns a View -- a list item in the ListView -- for each item in the ArrayList
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View v = convertView;
+            if (v == null) {
+                LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+                v = vi.inflate(R.layout.list_item, null);
+            }
+            Service o = items.get(position);
+            if (o != null) {
+                TextView tt = (TextView) v.findViewById(R.id.toptext);
+                TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+                if (tt != null) {
+                    tt.setText(o.getName());
+                }
+                if (bt != null) {
+                    bt.setText("Published: "+ o.getDate());
+                }
+            }
+            return v;
+        }
+    }
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
         DatabaseReference myRef = database.getReference("Vehicles");
-
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -106,70 +169,15 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                 }
             }
 
-            //adapter = new ItemAdapter(MainActivity.this, R.id.card_view, vehicles);
-//
-//                //listView.setAdapter(adapter);
-
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
             }
         });
-    }
 
-    private void setupActionBar()
-    {
-        ActionBar actionBar = getSupportActionBar();
-        if (actionBar != null)
-        {
-            // Show the Up button in the action bar.
-            actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Vehicle Details");
-        }
-    }
+        adapter = new ItemAdapter(ShowVehicleActivity.this, R.id.list_view, services);
+        listView.setAdapter(adapter);
 
-
-//    // An adapter to link the Array List to the ListView.
-//    private class ItemAdapter extends ArrayAdapter<Vehicle>
-//    {
-//
-//        private ArrayList<Vehicle> items;
-//
-//        public ItemAdapter(Context context, int textViewResourceId, ArrayList<Vehicle> items)
-//        {
-//            super(context, textViewResourceId, items);
-//            this.items = items;
-//        }
-//
-//        //This method is called once for every item in the ArrayList as the list is loaded.
-//        //It returns a View -- a list item in the ListView -- for each item in the ArrayList
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent)
-//        {
-//            View v = convertView;
-//            Vehicle vehicle = items.get(position);
-//            if (vehicle != null)
-//            {
-//                TextView tt = (TextView) v.findViewById(R.id.toptext);
-//                TextView bt = (TextView) v.findViewById(R.id.bottomtext);
-//                if (tt != null)
-//                {
-//                    tt.setText(vehicle.getMake());
-//                }
-//                if (bt != null)
-//                {
-//                    bt.setText(vehicle.getModel());
-//                }
-//            }
-//            return v;
-//        }
-//    }
-
-
-    @Override
-    protected void onResume()
-    {
-        super.onResume();
     }
 }
 
