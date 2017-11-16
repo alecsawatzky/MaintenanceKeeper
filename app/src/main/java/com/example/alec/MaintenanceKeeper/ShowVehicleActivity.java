@@ -106,6 +106,10 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                 }
             }
 
+            //adapter = new ItemAdapter(MainActivity.this, R.id.card_view, vehicles);
+//
+//                //listView.setAdapter(adapter);
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
 
@@ -123,6 +127,44 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             actionBar.setTitle("Vehicle Details");
         }
     }
+
+
+//    // An adapter to link the Array List to the ListView.
+//    private class ItemAdapter extends ArrayAdapter<Vehicle>
+//    {
+//
+//        private ArrayList<Vehicle> items;
+//
+//        public ItemAdapter(Context context, int textViewResourceId, ArrayList<Vehicle> items)
+//        {
+//            super(context, textViewResourceId, items);
+//            this.items = items;
+//        }
+//
+//        //This method is called once for every item in the ArrayList as the list is loaded.
+//        //It returns a View -- a list item in the ListView -- for each item in the ArrayList
+//        @Override
+//        public View getView(int position, View convertView, ViewGroup parent)
+//        {
+//            View v = convertView;
+//            Vehicle vehicle = items.get(position);
+//            if (vehicle != null)
+//            {
+//                TextView tt = (TextView) v.findViewById(R.id.toptext);
+//                TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+//                if (tt != null)
+//                {
+//                    tt.setText(vehicle.getMake());
+//                }
+//                if (bt != null)
+//                {
+//                    bt.setText(vehicle.getModel());
+//                }
+//            }
+//            return v;
+//        }
+//    }
+
 
     @Override
     protected void onResume()
