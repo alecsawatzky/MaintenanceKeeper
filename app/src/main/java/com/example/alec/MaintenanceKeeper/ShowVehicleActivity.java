@@ -124,7 +124,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                     tt.setText(o.getName());
                 }
                 if (bt != null) {
-                    bt.setText("Published: "+ o.getDate());
+                    bt.setText("Service Date: "+ o.getDate());
                 }
             }
             return v;
