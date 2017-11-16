@@ -74,22 +74,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
         final FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Vehicles");
-        final DatabaseReference servicesRef = database.getReference("Services");
-
-        servicesRef.addListenerForSingleValueEvent(new ValueEventListener()
-        {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot)
-            {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError)
-            {
-
-            }
-        });
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
