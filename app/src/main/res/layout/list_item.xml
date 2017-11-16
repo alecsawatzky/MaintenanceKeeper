@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="fill_parent"
+              android:layout_height="?android:attr/listPreferredItemHeight"
+              android:padding="6dip"
+              android:orientation="horizontal">
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dip"
+        android:layout_weight="1"
+        android:layout_height="fill_parent">
+
+        <TextView
+            android:id="@+id/toptext"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.62"
+            android:autoSizeMaxTextSize="5dp"
+            android:gravity="center_vertical"
+            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
+            android:textColor="?android:attr/colorActivatedHighlight"
+            tools:text="Test"/>
+
+        <TextView
+            android:id="@+id/bottomtext"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:singleLine="true"
+            android:text="Test"
+            android:textColor="@android:color/black"/>
+        <!--<Button
+            android:id="@+id/btnListItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ClickME!"/>-->
+    </LinearLayout>
+</LinearLayout>
