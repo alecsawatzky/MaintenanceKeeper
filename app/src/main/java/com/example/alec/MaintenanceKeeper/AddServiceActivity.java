@@ -3,7 +3,6 @@ package com.example.alec.MaintenanceKeeper;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -19,33 +18,25 @@ public class AddServiceActivity extends AppCompatActivity
     private EditText etModel;
     private EditText etYear;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_vehicle);
+        setContentView(R.layout.activity_add_service);
         setupActionBar();
 
         database = FirebaseDatabase.getInstance();
-        dbReference= database.getReference("Vehicles");
+        dbReference= database.getReference("Vehicles/-Kz6tWiY-arXEW8mneyt/services");
 
-        btnAddVehicle = (Button) findViewById(R.id.btnAddVehicle);
-        etMake = (EditText) findViewById(R.id.etMake);
-        etModel = (EditText) findViewById(R.id.etModel);
-        etYear = (EditText) findViewById(R.id.tvYear);
+        database.getReference().child("Vehicles").orderByChild("make").equalTo("GMC");
 
-   // Write to the database.
-        btnAddVehicle.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view)
-            {
-                Vehicle vehicle = new Vehicle(etMake.getText().toString(), etModel.getText().toString(), etYear.getText().toString());
-                dbReference.push().setValue(vehicle);
-                etMake.setText("");
-                etModel.setText("");
-            }
-        });
+
+
+
+                Service service = new Service("engine tune up", "10-10-2017");
+                dbReference.push().setValue(service);
+
 
 
     }
@@ -57,7 +48,7 @@ public class AddServiceActivity extends AppCompatActivity
         {
             // Show the Up button in the action bar.
             actionBar.setDisplayHomeAsUpEnabled(true);
-            actionBar.setTitle("Add Vehicle");
+            actionBar.setTitle("Add Service");
         }
     }
 }

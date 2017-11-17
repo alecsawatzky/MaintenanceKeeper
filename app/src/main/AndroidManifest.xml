@@ -21,7 +21,14 @@
             android:label=".AddVehicleActivity"
             android:parentActivityName=".MainActivity">
         </activity>
-        <activity android:name=".ShowVehicleActivity"  android:parentActivityName=".MainActivity">
+        <activity
+            android:name=".ShowVehicleActivity"
+            android:parentActivityName=".MainActivity">
+        </activity>
+        <activity
+            android:name=".AddServiceActivity"
+            android:label="@string/title_activity_add_service"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

@@ -100,7 +100,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_service_menu:
-                startActivity(new Intent(ShowVehicleActivity.this, AddVehicleActivity.class));
+                startActivity(new Intent(ShowVehicleActivity.this, AddServiceActivity.class));
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -176,7 +176,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         tvModel.setText(vehicle.getModel().toUpperCase());
                         tvYear.setText(vehicle.getYear());
 
-                        Iterable<DataSnapshot> servicesItems = child.child("Services").getChildren();
+                        Iterable<DataSnapshot> servicesItems = child.child("services").getChildren();
 
 
                         for (DataSnapshot s: servicesItems)
