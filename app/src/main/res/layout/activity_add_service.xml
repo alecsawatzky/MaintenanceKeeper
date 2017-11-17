@@ -75,7 +75,7 @@
         android:layout_marginBottom="18dp"
         android:background="#333333"
         android:ems="10"
-        android:inputType="textPersonName"
+        android:inputType="date"
         android:text="30-10-2017"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/colorPrimaryDark"/>
@@ -101,17 +101,18 @@
         android:layout_marginTop="16dp"
         android:background="#333333"
         android:ems="10"
-        android:inputType="number"
-        android:numeric="integer"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:inputType="textMultiLine"
+        android:textColor="@color/colorPrimaryDark"
+        android:gravity="top"
+        android:layout_above="@+id/btnAddService"/>
 
     <Button
         android:id="@+id/btnAddService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
         android:text="Add Service"
-        android:layout_below="@+id/etNotes"
+        android:layout_marginBottom="8dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignStart="@+id/etNotes"/>
 </RelativeLayout>
 
