@@ -9,6 +9,8 @@ import android.widget.EditText;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import static android.R.attr.key;
+
 public class AddServiceActivity extends AppCompatActivity
 {
     private FirebaseDatabase database;
@@ -26,16 +28,17 @@ public class AddServiceActivity extends AppCompatActivity
         setContentView(R.layout.activity_add_service);
         setupActionBar();
 
+        String vehicleKey = getIntent().getStringExtra("vehicleKey");
         database = FirebaseDatabase.getInstance();
-        dbReference= database.getReference("Vehicles/-Kz6tWiY-arXEW8mneyt/services");
+        dbReference= database.getReference("Vehicles/" + vehicleKey + "/services");
 
-        database.getReference().child("Vehicles").orderByChild("make").equalTo("GMC");
-
-
+        //database.getReference().child("Vehicles").orderByChild("make").equalTo("GMC");
 
 
-                Service service = new Service("engine tune up", "10-10-2017");
-                dbReference.push().setValue(service);
+
+
+        Service service = new Service("engine tune up", "10-10-2017");
+        dbReference.push().setValue(service);
 
 
 

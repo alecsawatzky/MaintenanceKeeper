@@ -47,6 +47,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private ListView listView;
     private ItemAdapter adapter;
     private FirebaseDatabase database;
+    private String vehicleKey;
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
@@ -100,7 +101,9 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.add_service_menu:
-                startActivity(new Intent(ShowVehicleActivity.this, AddServiceActivity.class));
+                Intent intent = new Intent(ShowVehicleActivity.this, AddServiceActivity.class);
+                intent.putExtra("vehicleKey", vehicleKey);
+                startActivity(intent);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -171,13 +174,13 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                     if (getIntent().getStringExtra("id").equals(key))
                     {
                         Vehicle vehicle = child.getValue(Vehicle.class);
+                        vehicleKey = child.getKey();
 
                         tvMake.setText(vehicle.getMake().toUpperCase());
                         tvModel.setText(vehicle.getModel().toUpperCase());
                         tvYear.setText(vehicle.getYear());
 
                         Iterable<DataSnapshot> servicesItems = child.child("services").getChildren();
-
 
                         for (DataSnapshot s: servicesItems)
                         {
