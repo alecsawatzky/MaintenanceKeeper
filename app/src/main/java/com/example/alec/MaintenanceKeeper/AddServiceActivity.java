@@ -46,7 +46,7 @@ public class AddServiceActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Service service = new Service(etService.getText().toString(), etDate.getText().toString());
+                Service service = new Service(etService.getText().toString(), etDate.getText().toString(), etNotes.getText().toString());
                 dbReference.push().setValue(service);
 
                 Intent intent = new Intent(AddServiceActivity.this, ShowVehicleActivity.class);
