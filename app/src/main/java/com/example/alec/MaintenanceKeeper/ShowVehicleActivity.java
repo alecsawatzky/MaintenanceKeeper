@@ -104,6 +104,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                 Intent intent = new Intent(ShowVehicleActivity.this, AddServiceActivity.class);
                 intent.putExtra("vehicleKey", vehicleKey);
                 startActivity(intent);
+                this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -156,12 +157,11 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         }
     }
 
-
     @Override
     protected void onResume()
     {
         super.onResume();
-
+        
         DatabaseReference myRef = database.getReference("Vehicles");
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
 
@@ -202,7 +202,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
         adapter = new ItemAdapter(ShowVehicleActivity.this, R.id.list_view, services);
         listView.setAdapter(adapter);
-
     }
 }
 
