@@ -18,7 +18,6 @@
             android:layout_weight="1.62"
             android:autoSizeMaxTextSize="5dp"
             android:gravity="center_vertical"
-            android:textAppearance="@android:style/TextAppearance.Material.Subhead"
             android:textColor="?android:attr/colorActivatedHighlight"
             tools:text="Test"/>
 
