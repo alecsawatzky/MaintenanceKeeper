@@ -79,7 +79,7 @@ public class SignInActivity extends AppCompatActivity implements
         
         if (!isNetworkConnected())
         {
-            Toast.makeText(this, "No Network Connection Found", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "Please Check your Network Connection.", Toast.LENGTH_LONG).show();
 
             tvNetwork.setVisibility(View.VISIBLE);
         }
