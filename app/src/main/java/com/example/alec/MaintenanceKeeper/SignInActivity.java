@@ -1,11 +1,15 @@
 package com.example.alec.MaintenanceKeeper;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
@@ -31,12 +35,15 @@ public class SignInActivity extends AppCompatActivity implements
     private FirebaseAuth mFirebaseAuth;
     private SignInButton mSignInButton;
     private GoogleApiClient mGoogleApiClient;
+    private TextView tvNetwork;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        tvNetwork = (TextView) findViewById(R.id.tvNetwork);
 
         mFirebaseAuth = FirebaseAuth.getInstance();
         mSignInButton = (SignInButton) findViewById(R.id.sign_in_button);
@@ -55,6 +62,27 @@ public class SignInActivity extends AppCompatActivity implements
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
 
+    }
+
+    private boolean  isNetworkConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        
+        if (!isNetworkConnected())
+        {
+            Toast.makeText(this, "No Network Connection Found", Toast.LENGTH_LONG).show();
+
+            tvNetwork.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
