@@ -55,14 +55,6 @@ public class AddServiceActivity extends AppCompatActivity
                 finish();
             }
         });
-
-//        Service service = new Service("engine tune up", "10-10-2017");
-//        dbReference.push().setValue(service);
-//
-//        Intent intent = new Intent(AddServiceActivity.this, ShowVehicleActivity.class);
-//        intent.putExtra("id", vehicleKey);
-//        startActivity(intent);
-//        finish();
     }
 
     private void setupActionBar()

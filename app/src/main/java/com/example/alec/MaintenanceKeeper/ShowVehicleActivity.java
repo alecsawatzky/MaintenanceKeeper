@@ -49,12 +49,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private FirebaseDatabase database;
     private String vehicleKey;
 
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
-    {
-
-    }
-
     public static class VehicleViewHolder extends RecyclerView.ViewHolder
     {
         List<Vehicle> vehicles;
@@ -87,6 +81,11 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         listView = (ListView) findViewById(R.id.list_view);
 
         database = FirebaseDatabase.getInstance();
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
+    {
 
     }
 
@@ -121,7 +120,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             actionBar.setTitle("Vehicle Details");
         }
     }
-
 
     // An adapter to link the Array List to the ListView.
     private class ItemAdapter extends ArrayAdapter<Service> {
