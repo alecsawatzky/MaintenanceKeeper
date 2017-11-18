@@ -14,4 +14,18 @@
     <string name="banner_ad_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_add_service">AddServiceActivity</string>
+
+    <string-array name="fontSizeArray">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
+
+    <string-array name="fontColorArray">
+        <item>White</item>
+        <item>Blue</item>
+        <item>Gray</item>
+        <item>Red</item>
+    </string-array>
 </resources>
+

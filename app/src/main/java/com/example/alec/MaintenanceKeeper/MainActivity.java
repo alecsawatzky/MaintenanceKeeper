@@ -18,6 +18,7 @@ package com.example.alec.MaintenanceKeeper;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -115,6 +116,11 @@ public class MainActivity extends AppCompatActivity
     // Firebase instance variables
     private DatabaseReference mFirebaseDatabaseReference;
     private Vehicle vehicle;
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
+    private int fontSize;
+    private String fontColor;
+    private int color;
 
     // Firebase instance variables
 
@@ -126,6 +132,7 @@ public class MainActivity extends AppCompatActivity
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
+        sharedPreferences = getSharedPreferences("general prefs", MODE_PRIVATE);
 
         //listView = (ListView) findViewById(R.id.vehicle_list_view);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -186,6 +193,10 @@ public class MainActivity extends AppCompatActivity
 
                 viewHolder.make.setText(vehicle.getMake());
                 viewHolder.model.setText(vehicle.getModel());
+                
+                viewHolder.make.setTextColor(color);
+                viewHolder.make.setTextSize(fontSize);
+                viewHolder.model.setTextSize(fontSize / 2);
 
                 viewHolder.cv.setOnClickListener(new View.OnClickListener()
                 {
@@ -272,6 +283,10 @@ public class MainActivity extends AppCompatActivity
                 mUsername = ANONYMOUS;
                 startActivity(new Intent(this, SignInActivity.class));
                 finish();
+                return true;
+            case  R.id.settings_menu:
+                Intent settings = new Intent(this, SettingsActivity.class);
+                startActivity(settings);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -416,6 +431,39 @@ public class MainActivity extends AppCompatActivity
         if (!isNetworkConnected())
         {
             Toast.makeText(this, "No Network Connection Found.", Toast.LENGTH_LONG).show();
+        }
+
+        String fontSizeText = sharedPreferences.getString("fontSize", "Medium");
+
+        switch (fontSizeText)
+        {
+            case "Small":
+                fontSize = 20;
+                break;
+            case "Medium":
+                fontSize = 30;
+                break;
+            case "Large":
+                fontSize = 40;
+                break;
+        }
+
+        fontColor = sharedPreferences.getString("fontColor", "Black").toLowerCase();
+
+        switch (fontColor)
+        {
+            case "white":
+                color = Color.WHITE;
+                break;
+            case "blue":
+                color = Color.BLUE;
+                break;
+            case "red":
+                color = Color.RED;
+                break;
+            case "gray":
+                color = Color.GRAY;
+                break;
         }
 
 
