@@ -15,8 +15,11 @@
  */
 package com.example.alec.MaintenanceKeeper;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
@@ -388,6 +391,14 @@ public class MainActivity extends AppCompatActivity
 //        }
 //    }
 
+    private boolean  isNetworkConnected()
+    {
+        ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
+    }
+
     @Override
     public void onStart()
     {
@@ -401,6 +412,11 @@ public class MainActivity extends AppCompatActivity
     {
         super.onResume();
         mFirebaseAdapter.startListening();
+
+        if (!isNetworkConnected())
+        {
+            Toast.makeText(this, "No Network Connection Found.", Toast.LENGTH_LONG).show();
+        }
 
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();
