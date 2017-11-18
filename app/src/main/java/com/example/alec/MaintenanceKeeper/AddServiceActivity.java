@@ -18,7 +18,6 @@ public class AddServiceActivity extends AppCompatActivity
     private Button btnAddService;
     private EditText etService;
     private EditText etDate;
-    private EditText etNotes;
     private String vehicleKey;
 
 
@@ -31,7 +30,6 @@ public class AddServiceActivity extends AppCompatActivity
 
         etService = (EditText) findViewById(R.id.etService);
         etDate = (EditText) findViewById(R.id.etDate);
-        etNotes = (EditText) findViewById(R.id.etNotes);
         btnAddService = (Button) findViewById(R.id.btnAddService);
 
         vehicleKey = getIntent().getStringExtra("vehicleKey");
@@ -46,7 +44,7 @@ public class AddServiceActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                Service service = new Service(etService.getText().toString(), etDate.getText().toString(), etNotes.getText().toString());
+                Service service = new Service(etService.getText().toString(), etDate.getText().toString());
                 dbReference.push().setValue(service);
 
                 Intent intent = new Intent(AddServiceActivity.this, ShowVehicleActivity.class);

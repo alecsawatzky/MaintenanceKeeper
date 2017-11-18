@@ -22,97 +22,54 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="31dp"/>
 
-    <Spinner
-        android:id="@+id/spFontSize"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView2"
-        android:layout_marginTop="25dp"
-        android:visibility="invisible"/>
-
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="29dp"
         android:text="Enter Service Date:"
         android:textColor="@android:color/background_light"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:layout_below="@+id/spFontSize"
+        android:layout_below="@+id/etService"
         android:layout_alignParentStart="true"/>
-
-    <Spinner
-        android:id="@+id/spFontColor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/textView6"
-        android:layout_marginTop="37dp"
-        android:visibility="invisible"/>
 
     <EditText
         android:id="@+id/etService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView2"
-        android:layout_alignTop="@+id/spFontSize"
         android:background="#333333"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Oil Change"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/colorPrimaryDark"/>
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_below="@+id/textView2"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_marginTop="30dp"/>
 
     <EditText
         android:id="@+id/etDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/textView7"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginBottom="18dp"
         android:background="#333333"
         android:ems="10"
         android:inputType="date"
         android:text="30-10-2017"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/colorPrimaryDark"/>
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Notes:"
-        android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/spFontColor"
-        android:layout_alignStart="@+id/etDate"/>
-
-    <EditText
-        android:id="@+id/etNotes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/textView7"
-        android:layout_below="@+id/textView7"
-        android:layout_marginTop="16dp"
-        android:background="#333333"
-        android:ems="10"
-        android:inputType="textMultiLine"
         android:textColor="@color/colorPrimaryDark"
-        android:gravity="top"
-        android:layout_above="@+id/btnAddService"/>
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"/>
 
     <Button
         android:id="@+id/btnAddService"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Add Service"
-        android:layout_marginBottom="8dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignStart="@+id/etNotes"/>
+        android:layout_marginTop="26dp"
+        android:layout_below="@+id/etDate"
+        android:layout_alignStart="@+id/etDate"/>
 </RelativeLayout>
 
