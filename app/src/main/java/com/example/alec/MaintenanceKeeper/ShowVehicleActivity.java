@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -50,14 +51,16 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private String vehicleKey;
     private int color;
     private int size;
+    private Button removeVehicle;
 
     public static class VehicleViewHolder extends RecyclerView.ViewHolder
     {
-        List<Vehicle> vehicles;
-        CardView cv;
-        TextView make;
-        TextView model;
-        ImageView vehiclePhoto;
+        private List<Vehicle> vehicles;
+        private CardView cv;
+        private TextView make;
+        private TextView model;
+        private ImageView vehiclePhoto;
+        private Button removeVehicle;
 
         VehicleViewHolder(View itemView)
         {
@@ -66,6 +69,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             make = (TextView) itemView.findViewById(R.id.tvMake);
             model = (TextView) itemView.findViewById(R.id.tv_model);
             vehiclePhoto = (ImageView) itemView.findViewById(R.id.PhVehicle);
+
         }
     }
 
@@ -83,8 +87,20 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         listView = (ListView) findViewById(R.id.list_view);
         color = getIntent().getIntExtra("color", Color.RED);
         size = getIntent().getIntExtra("size", 30);
+        removeVehicle = (Button) findViewById(R.id.btnRemoveVehicle);
 
         database = FirebaseDatabase.getInstance();
+
+
+
+        removeVehicle.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                database.getReference("Vehicles/" + getIntent().getStringExtra("id")).removeValue();
+            }
+        });
     }
 
     @Override
@@ -172,7 +188,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for (DataSnapshot child: dataSnapshot.getChildren())
+                for (final DataSnapshot child: dataSnapshot.getChildren())
                 {
                     String key = child.getKey();
 
