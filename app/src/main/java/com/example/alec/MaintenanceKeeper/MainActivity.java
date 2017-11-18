@@ -193,10 +193,10 @@ public class MainActivity extends AppCompatActivity
 
                 viewHolder.make.setText(vehicle.getMake());
                 viewHolder.model.setText(vehicle.getModel());
-                
+
                 viewHolder.make.setTextColor(color);
                 viewHolder.make.setTextSize(fontSize);
-                viewHolder.model.setTextSize(fontSize / 2);
+                viewHolder.model.setTextSize(fontSize);
 
                 viewHolder.cv.setOnClickListener(new View.OnClickListener()
                 {
@@ -205,6 +205,8 @@ public class MainActivity extends AppCompatActivity
                     {
                         Intent intent = new Intent(MainActivity.this, ShowVehicleActivity.class);
                         intent.putExtra("id", vehicle.getId());
+                        intent.putExtra("color", color);
+                        intent.putExtra("size", fontSize / 2);
                         startActivity(intent);
                     }
                 });
@@ -230,7 +232,7 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        recyclerView.setAdapter(mFirebaseAdapter);
+        //recyclerView.setAdapter(mFirebaseAdapter); moved to on Resume....
 
 
 //        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
@@ -465,6 +467,8 @@ public class MainActivity extends AppCompatActivity
                 color = Color.GRAY;
                 break;
         }
+
+        recyclerView.setAdapter(mFirebaseAdapter);
 
 
 //        FirebaseDatabase database = FirebaseDatabase.getInstance();

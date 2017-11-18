@@ -33,7 +33,7 @@
             android:parentActivityName=".ShowVehicleActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".SettingsActivity">
+        <activity android:name=".SettingsActivity" android:parentActivityName=".ShowVehicleActivity">
         </activity>
     </application>
 

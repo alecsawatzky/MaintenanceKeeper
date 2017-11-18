@@ -2,6 +2,7 @@ package com.example.alec.MaintenanceKeeper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
@@ -47,6 +48,8 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private ItemAdapter adapter;
     private FirebaseDatabase database;
     private String vehicleKey;
+    private int color;
+    private int size;
 
     public static class VehicleViewHolder extends RecyclerView.ViewHolder
     {
@@ -78,6 +81,8 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         tvModel = (TextView) findViewById(R.id.tvModel);
         tvYear = (TextView) findViewById(R.id.tvYear);
         listView = (ListView) findViewById(R.id.list_view);
+        color = getIntent().getIntExtra("color", Color.RED);
+        size = getIntent().getIntExtra("size", 30);
 
         database = FirebaseDatabase.getInstance();
     }
@@ -145,9 +150,12 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                 TextView bt = (TextView) v.findViewById(R.id.bottomtext);
                 if (tt != null) {
                     tt.setText(o.getName());
+                    tt.setTextColor(color);
+                    tt.setTextSize(size);
                 }
                 if (bt != null) {
                     bt.setText("Service Date: "+ o.getDate());
+                    bt.setTextSize(size);
                 }
             }
             return v;
@@ -176,6 +184,14 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         tvMake.setText(vehicle.getMake().toUpperCase());
                         tvModel.setText(vehicle.getModel().toUpperCase());
                         tvYear.setText(vehicle.getYear());
+
+                        tvMake.setTextColor(color);
+                        tvModel.setTextColor(color);
+                        tvYear.setTextColor(color);
+
+                        tvMake.setTextSize(size);
+                        tvModel.setTextSize(size);
+                        tvYear.setTextSize(size);
 
                         Iterable<DataSnapshot> servicesItems = child.child("services").getChildren();
 
