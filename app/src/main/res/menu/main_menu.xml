@@ -9,4 +9,10 @@
         android:id="@+id/add_vehicle_menu"
         android:title="Add Vehicle"
         app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/settings_menu"
+        android:title="Settings"
+        android:icon="@drawable/ic_settings_black_48dp"
+        app:showAsAction="always" />
 </menu>
