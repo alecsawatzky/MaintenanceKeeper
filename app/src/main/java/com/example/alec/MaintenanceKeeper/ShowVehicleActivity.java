@@ -45,6 +45,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private GoogleApiClient mGoogleApiClient;
     private FirebaseRecyclerAdapter<Vehicle, VehicleViewHolder> mFirebaseAdapter;
     private ArrayList<Service> services;
+    private List<String> keys;
     private ListView listView;
     private ItemAdapter adapter;
     private FirebaseDatabase database;
@@ -81,6 +82,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         setupActionBar();
 
         services = new ArrayList<Service>();
+        keys = new ArrayList<String>();
         tvMake = (TextView) findViewById(R.id.tvMake);
         tvModel = (TextView) findViewById(R.id.tvModel);
         tvYear = (TextView) findViewById(R.id.tvYear);
@@ -154,7 +156,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         //This method is called once for every item in the ArrayList as the list is loaded.
         //It returns a View -- a list item in the ListView -- for each item in the ArrayList
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, View convertView, ViewGroup parent) {
             View v = convertView;
             if (v == null) {
                 LayoutInflater vi = (LayoutInflater)getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -164,6 +166,20 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             if (o != null) {
                 TextView tt = (TextView) v.findViewById(R.id.toptext);
                 TextView bt = (TextView) v.findViewById(R.id.bottomtext);
+                Button removeService = (Button) v.findViewById(R.id.btnRemoveService);
+
+                removeService.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View view)
+                    {
+                        database.getReference("Vehicles/" + vehicleKey+ "/services/" + keys.get(position).toString()).removeValue();
+                        services.clear();
+                        onResume();
+                    }
+                });
+
+
                 if (tt != null) {
                     tt.setText(o.getName());
                     tt.setTextColor(color);
@@ -215,6 +231,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         {
                             Service service = s.getValue(Service.class);
 
+                            keys.add(s.getKey());
                             services.add(service);
                         }
                     }
