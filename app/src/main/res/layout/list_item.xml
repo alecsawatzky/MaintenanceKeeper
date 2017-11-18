@@ -5,6 +5,7 @@
               android:layout_height="?android:attr/listPreferredItemHeight"
               android:padding="6dip"
               android:orientation="horizontal">
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dip"
@@ -13,7 +14,7 @@
 
         <TextView
             android:id="@+id/toptext"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1.62"
             android:autoSizeMaxTextSize="5dp"
@@ -29,10 +30,16 @@
             android:singleLine="true"
             android:text="Test"
             android:textColor="@color/colorTitle"/>
-        <!--<Button
-            android:id="@+id/btnListItem"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="ClickME!"/>-->
+
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button2"
+        style="@android:style/Widget.Button.Small"
+        android:layout_width="38dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_delete_forever_black_18dp"
+        android:elevation="23dp"/>
+
+
 </LinearLayout>
