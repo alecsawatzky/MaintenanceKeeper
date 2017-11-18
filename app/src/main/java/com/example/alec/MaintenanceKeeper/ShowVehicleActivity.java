@@ -19,7 +19,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.common.ConnectionResult;
@@ -183,8 +182,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         for (DataSnapshot s: servicesItems)
                         {
                             Service service = s.getValue(Service.class);
-
-                            Toast.makeText(ShowVehicleActivity.this, service.getName(), Toast.LENGTH_SHORT).show();
 
                             services.add(service);
                         }
