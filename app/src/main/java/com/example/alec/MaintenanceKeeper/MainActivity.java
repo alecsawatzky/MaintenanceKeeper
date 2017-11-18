@@ -440,7 +440,7 @@ public class MainActivity extends AppCompatActivity
         switch (fontSizeText)
         {
             case "Small":
-                fontSize = 20;
+                fontSize = 25;
                 break;
             case "Medium":
                 fontSize = 30;
