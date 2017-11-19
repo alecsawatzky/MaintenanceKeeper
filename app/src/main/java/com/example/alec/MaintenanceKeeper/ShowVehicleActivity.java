@@ -88,7 +88,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         tvYear = (TextView) findViewById(R.id.tvYear);
         listView = (ListView) findViewById(R.id.list_view);
         color = getIntent().getIntExtra("color", Color.RED);
-        size = getIntent().getIntExtra("size", 30);
+        size = getIntent().getIntExtra("size", 15);
         removeVehicle = (Button) findViewById(R.id.btnRemoveVehicle);
 
         database = FirebaseDatabase.getInstance();
