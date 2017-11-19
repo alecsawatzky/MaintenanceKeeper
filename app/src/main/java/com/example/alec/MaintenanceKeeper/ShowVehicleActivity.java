@@ -172,6 +172,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                     public void onClick(View view)
                     {
                         database.getReference("Vehicles/" + vehicleKey+ "/services/" + keys.get(position).toString()).removeValue();
+                        keys.remove(position);
                         services.clear();
                         onResume();
                     }
