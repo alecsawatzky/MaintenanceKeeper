@@ -99,6 +99,7 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             public void onClick(View view)
             {
                 database.getReference("Vehicles/" + getIntent().getStringExtra("id")).removeValue();
+                finish();
             }
         });
     }

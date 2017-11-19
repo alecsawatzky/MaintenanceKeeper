@@ -34,7 +34,7 @@ public class AddVehicleActivity extends AppCompatActivity
         etModel = (EditText) findViewById(R.id.etModel);
         etYear = (EditText) findViewById(R.id.tvYear);
 
-   // Write to the database.
+        // Write to the database.
         btnAddVehicle.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -42,12 +42,9 @@ public class AddVehicleActivity extends AppCompatActivity
             {
                 Vehicle vehicle = new Vehicle(etMake.getText().toString(), etModel.getText().toString(), etYear.getText().toString());
                 dbReference.push().setValue(vehicle);
-                etMake.setText("");
-                etModel.setText("");
+                finish();
             }
         });
-
-
     }
 
     private void setupActionBar()
