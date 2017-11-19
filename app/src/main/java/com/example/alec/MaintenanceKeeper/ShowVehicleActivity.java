@@ -71,8 +71,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             cv = (CardView) itemView.findViewById(R.id.cv);
             make = (TextView) itemView.findViewById(R.id.tvMake);
             model = (TextView) itemView.findViewById(R.id.tv_model);
-            vehiclePhoto = (ImageView) itemView.findViewById(R.id.PhVehicle);
-
         }
     }
 
@@ -99,7 +97,9 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
             @Override
             public void onClick(View view)
             {
-                database.getReference("Vehicles/" + getIntent().getStringExtra("id")).removeValue();
+                Intent intent = new Intent(ShowVehicleActivity.this, AddServiceActivity.class);
+                intent.putExtra("vehicleKey", vehicleKey);
+                startActivity(intent);
                 finish();
             }
         });
@@ -121,11 +121,9 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.add_service_menu:
-                Intent intent = new Intent(ShowVehicleActivity.this, AddServiceActivity.class);
-                intent.putExtra("vehicleKey", vehicleKey);
-                startActivity(intent);
-                //this.finish();
+            case R.id.remove_vehicle_menu:
+                database.getReference("Vehicles/" + getIntent().getStringExtra("id")).removeValue();
+                this.finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
