@@ -35,10 +35,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -86,34 +83,21 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
 
-    private ListView listView;
-    //    private VehicleAdapter adapter;
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Vehicle, VehicleViewHolder> mFirebaseAdapter;
 
     private ArrayList<Vehicle> vehicles;
-
-
     private static final String TAG = "MainActivity";
     public static final String MESSAGES_CHILD = "Vehicles";
-    private static final int REQUEST_INVITE = 1;
-    private static final int REQUEST_IMAGE = 2;
-    private static final String LOADING_IMAGE_URL = "https://www.google.com/images/spin-32.gif";
-    public static final int DEFAULT_MSG_LENGTH_LIMIT = 10;
     public static final String ANONYMOUS = "anonymous";
-    private static final String MESSAGE_SENT_EVENT = "message_sent";
     private String mUsername;
     private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
-    private static final String MESSAGE_URL = "http://friendlychat.firebase.google.com/message/";
 
-    private Button mSendButton;
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar progressBar;
-    private EditText mMessageEditText;
-    private ImageView mAddMessageImageView;
-    // Firebase instance variables
+
     private DatabaseReference mFirebaseDatabaseReference;
     private Vehicle vehicle;
     private SharedPreferences sharedPreferences;
@@ -121,8 +105,6 @@ public class MainActivity extends AppCompatActivity
     private int fontSize;
     private String fontColor;
     private int color;
-
-    // Firebase instance variables
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -132,9 +114,8 @@ public class MainActivity extends AppCompatActivity
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
-        sharedPreferences = getSharedPreferences("general prefs", MODE_PRIVATE);
 
-        //listView = (ListView) findViewById(R.id.vehicle_list_view);
+        sharedPreferences = getSharedPreferences("general prefs", MODE_PRIVATE);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
         progressBar.setVisibility(ProgressBar.VISIBLE);
 
@@ -143,13 +124,11 @@ public class MainActivity extends AppCompatActivity
                 .addApi(Auth.GOOGLE_SIGN_IN_API)
                 .build();
 
-
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
         mLinearLayoutManager = new LinearLayoutManager(this);
         mLinearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(mLinearLayoutManager);
         recyclerView.setVisibility(View.INVISIBLE);
-
 
         mFirebaseDatabaseReference = FirebaseDatabase.getInstance().getReference();
         SnapshotParser<Vehicle> parser = new SnapshotParser<Vehicle>()
@@ -232,21 +211,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-        //recyclerView.setAdapter(mFirebaseAdapter); moved to on Resume....
-
-
-//        recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
-//        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        vehicles = new ArrayList<Vehicle>();
-//        vehicles.add(new Vehicle("new", "new"));
-//        vehicles.add(new Vehicle("new", "new"));
-//
-//        adapter = new VehicleAdapter(vehicles).;
-//        recyclerView.setAdapter(adapter);
-
-
         // Initialize Firebase Auth
         mFirebaseAuth = FirebaseAuth.getInstance();
         mFirebaseUser = mFirebaseAuth.getCurrentUser();
@@ -303,77 +267,6 @@ public class MainActivity extends AppCompatActivity
         Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
-
-
-//    public class VehicleAdapter extends RecyclerView.Adapter<VehicleAdapter.VehicleViewHolder> {
-//
-//        private List<Vehicle> contactList;
-//
-//        public VehicleAdapter(List<Vehicle> contactList) {
-//            this.contactList = contactList;
-//        }
-//
-//        @Override
-//        public int getItemCount() {
-//            return contactList.size();
-//        }
-//
-//        @Override
-//        public void onBindViewHolder(VehicleViewHolder contactViewHolder, int i) {
-//            Vehicle ci = contactList.get(i);
-//            contactViewHolder.make.setText(ci.getMake());
-//        }
-//
-//        @Override
-//        public VehicleViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-//            View itemView = LayoutInflater.
-//                    from(viewGroup.getContext()).
-//                    inflate(R.layout.card_item, viewGroup, false);
-//
-//            return new VehicleViewHolder(itemView);
-//        }
-//
-//
-//    }
-
-
-//    // An adapter to link the Array List to the ListView.
-//    private class ItemAdapter extends ArrayAdapter<Vehicle>
-//    {
-//
-//        private ArrayList<Vehicle> items;
-//
-//        public ItemAdapter(Context context, int textViewResourceId, ArrayList<Vehicle> items)
-//        {
-//            super(context, textViewResourceId, items);
-//            this.items = items;
-//        }
-//
-//        //This method is called once for every item in the ArrayList as the list is loaded.
-//        //It returns a View -- a list item in the ListView -- for each item in the ArrayList
-//        @Override
-//        public View getView(int position, View convertView, ViewGroup parent)
-//        {
-//            View v = convertView;
-//            Vehicle vehicle = items.get(position);
-//            if (vehicle != null)
-//            {
-//                TextView tt = (TextView) v.findViewById(R.id.toptext);
-//                TextView bt = (TextView) v.findViewById(R.id.bottomtext);
-//                if (tt != null)
-//                {
-//                    tt.setText(vehicle.getMake());
-//                }
-//                if (bt != null)
-//                {
-//                    bt.setText(vehicle.getModel());
-//                }
-//            }
-//            return v;
-//        }
-//    }
-
-
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -392,21 +285,6 @@ public class MainActivity extends AppCompatActivity
         FirebaseUserActions.getInstance().end(getIndexApiAction());
         super.onStop();
     }
-
-//    public static class MessageViewHolder extends RecyclerView.ViewHolder {
-//        TextView messageTextView;
-//        ImageView messageImageView;
-//        TextView messengerTextView;
-//        CircleImageView messengerImageView;
-//
-//        public MessageViewHolder(View v) {
-//            super(v);
-//            messageTextView = (TextView) itemView.findViewById(R.id.messageTextView);
-//            messageImageView = (ImageView) itemView.findViewById(R.id.messageImageView);
-//            messengerTextView = (TextView) itemView.findViewById(R.id.messengerTextView);
-//            messengerImageView = (CircleImageView) itemView.findViewById(R.id.messengerImageView);
-//        }
-//    }
 
     private boolean  isNetworkConnected()
     {
@@ -469,55 +347,5 @@ public class MainActivity extends AppCompatActivity
         }
 
         recyclerView.setAdapter(mFirebaseAdapter);
-
-
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference myRef = database.getReference("Vehicles");
-//
-//        vehicles = new ArrayList<Vehicle>();
-//
-//
-//        // Read from the database
-//        myRef.addValueEventListener(new ValueEventListener()
-//        {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot)
-//            {
-//                // This method is called once with the initial value and again
-//                // whenever data at this location is updated.
-//
-//                vehicles.clear();
-//                for (DataSnapshot postSnapshot : dataSnapshot.getChildren())
-//                {
-//                    Vehicle vehicle = postSnapshot.getValue(Vehicle.class);
-//                    vehicles.add(vehicle);
-//
-//                }
-//                //adapter = new ItemAdapter(MainActivity.this, R.id.card_view, vehicles);
-//
-//                //listView.setAdapter(adapter);
-//
-//
-//
-//
-//
-//                //progressBar.setVisibility(ProgressBar.INVISIBLE);
-//            }
-//
-//
-//
-//
-//            public void onCancelled(DatabaseError databaseError)
-//            {
-//
-//            }
-//        });
-//    }
-//
-//
-
-
-
-
     }
 }

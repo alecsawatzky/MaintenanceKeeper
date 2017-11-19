@@ -93,8 +93,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
         database = FirebaseDatabase.getInstance();
 
-
-
         removeVehicle.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -250,37 +248,3 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         listView.setAdapter(adapter);
     }
 }
-
-
-
-
-
-
-
-
-//
-//                    servicesRef.orderByKey().addValueEventListener(new ValueEventListener()
-//                    {
-//                        @Override
-//                        public void onDataChange(DataSnapshot dataSnapshot)
-//                        {
-//                            for (DataSnapshot child: dataSnapshot.getChildren())
-//                            {
-//                                Service service = child.getValue(Service.class);
-//
-//                                //Toast.makeText(ShowVehicleActivity.this, service.getName(), Toast.LENGTH_SHORT).show();
-//                            }
-//                        }
-//
-//                        @Override
-//                        public void onCancelled(DatabaseError databaseError)
-//                        {
-//
-//                        }
-//                    });
-
-//                    Query servicesQuery = database.getReference().child("Services");
-//
-//                    Object o = servicesQuery.orderByKey().equals(key);
-//
-//                    int i =0;

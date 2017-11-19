@@ -36,9 +36,7 @@ public class AddServiceActivity extends AppCompatActivity
         database = FirebaseDatabase.getInstance();
         dbReference= database.getReference("Vehicles/" + vehicleKey + "/services");
 
-        //database.getReference().child("Vehicles").orderByChild("make").equalTo("GMC");
-
-//        // Write to the database.
+        // Write to the database.
         btnAddService.setOnClickListener(new View.OnClickListener()
         {
             @Override
