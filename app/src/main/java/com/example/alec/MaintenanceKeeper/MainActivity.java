@@ -102,7 +102,6 @@ public class MainActivity extends AppCompatActivity
     private Vehicle vehicle;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private int fontSize;
     private String fontColor;
     private int color;
 
@@ -174,8 +173,6 @@ public class MainActivity extends AppCompatActivity
                 viewHolder.model.setText(vehicle.getModel());
 
                 viewHolder.make.setTextColor(color);
-                viewHolder.make.setTextSize(fontSize);
-                viewHolder.model.setTextSize(fontSize);
 
                 viewHolder.cv.setOnClickListener(new View.OnClickListener()
                 {
@@ -184,8 +181,6 @@ public class MainActivity extends AppCompatActivity
                     {
                         Intent intent = new Intent(MainActivity.this, ShowVehicleActivity.class);
                         intent.putExtra("id", vehicle.getId());
-                        intent.putExtra("color", color);
-                        intent.putExtra("size", fontSize / 2);
                         startActivity(intent);
                     }
                 });
@@ -311,21 +306,6 @@ public class MainActivity extends AppCompatActivity
         if (!isNetworkConnected())
         {
             Toast.makeText(this, "No Network Connection Found.", Toast.LENGTH_LONG).show();
-        }
-
-        String fontSizeText = sharedPreferences.getString("fontSize", "Medium");
-
-        switch (fontSizeText)
-        {
-            case "Small":
-                fontSize = 25;
-                break;
-            case "Medium":
-                fontSize = 30;
-                break;
-            case "Large":
-                fontSize = 40;
-                break;
         }
 
         fontColor = sharedPreferences.getString("fontColor", "Black").toLowerCase();

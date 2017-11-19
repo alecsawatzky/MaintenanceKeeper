@@ -2,6 +2,7 @@ package com.example.alec.MaintenanceKeeper;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -50,9 +51,10 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private ItemAdapter adapter;
     private FirebaseDatabase database;
     private String vehicleKey;
-    private int color;
-    private int size;
     private Button removeVehicle;
+    private SharedPreferences sharedPreferences;
+    private int fontColor;
+    private int fontSize;
 
     public static class VehicleViewHolder extends RecyclerView.ViewHolder
     {
@@ -81,14 +83,13 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         setContentView(R.layout.activity_show_vehicle);
         setupActionBar();
 
+        sharedPreferences = getSharedPreferences("general prefs", MODE_PRIVATE);
         services = new ArrayList<Service>();
         keys = new ArrayList<String>();
         tvMake = (TextView) findViewById(R.id.tvMake);
         tvModel = (TextView) findViewById(R.id.tvModel);
         tvYear = (TextView) findViewById(R.id.tvYear);
         listView = (ListView) findViewById(R.id.list_view);
-        color = getIntent().getIntExtra("color", Color.RED);
-        size = getIntent().getIntExtra("size", 15);
         removeVehicle = (Button) findViewById(R.id.btnRemoveVehicle);
 
         database = FirebaseDatabase.getInstance();
@@ -182,12 +183,12 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
                 if (tt != null) {
                     tt.setText(o.getName());
-                    tt.setTextColor(color);
-                    tt.setTextSize(size);
+                    tt.setTextColor(fontColor);
+                    tt.setTextSize(fontSize);
                 }
                 if (bt != null) {
                     bt.setText("Service Date: "+ o.getDate());
-                    bt.setTextSize(size);
+                    bt.setTextSize(fontSize - 4);
                 }
             }
             return v;
@@ -217,13 +218,9 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         tvModel.setText(vehicle.getModel().toUpperCase());
                         tvYear.setText(vehicle.getYear());
 
-                        tvMake.setTextColor(color);
-                        tvModel.setTextColor(color);
-                        tvYear.setTextColor(color);
-
-                        tvMake.setTextSize(size);
-                        tvModel.setTextSize(size);
-                        tvYear.setTextSize(size);
+                        tvMake.setTextColor(fontColor);
+                        tvModel.setTextColor(fontColor);
+                        tvYear.setTextColor(fontColor);
 
                         Iterable<DataSnapshot> servicesItems = child.child("services").getChildren();
 
@@ -245,6 +242,40 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
             }
         });
+
+        String fontSizeText = sharedPreferences.getString("fontSize", "Medium");
+
+        switch (fontSizeText)
+        {
+            case "Small":
+                fontSize = 15;
+                break;
+            case "Medium":
+                fontSize = 17;
+                break;
+            case "Large":
+                fontSize = 20;
+                break;
+        }
+
+        String fontColorText = sharedPreferences.getString("fontColor", "Black").toLowerCase();
+
+        switch (fontColorText)
+        {
+            case "white":
+                fontColor = Color.WHITE;
+                break;
+            case "blue":
+                fontColor = Color.BLUE;
+                break;
+            case "red":
+                fontColor = Color.RED;
+                break;
+            case "gray":
+                fontColor = Color.GRAY;
+                break;
+        }
+
 
         adapter = new ItemAdapter(ShowVehicleActivity.this, R.id.list_view, services);
         listView.setAdapter(adapter);

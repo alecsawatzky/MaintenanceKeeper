@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvMake"
                 android:layout_toRightOf="@+id/PhVehicle"
-                android:textColor="@color/colorTitle"/>
+                android:textColor="@color/colorTitle"
+                android:textSize="15sp"/>
 
         </RelativeLayout>
 
