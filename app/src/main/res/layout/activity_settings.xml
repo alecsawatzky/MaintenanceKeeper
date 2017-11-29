@@ -8,7 +8,6 @@
     tools:context="com.example.alec.MaintenanceKeeper.SettingsActivity"
     android:background="@color/colorLightGrey">
 
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"

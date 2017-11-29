@@ -113,4 +113,5 @@
         android:layout_below="@+id/tvYear"
         android:layout_alignStart="@+id/tvYear"
         android:layout_marginStart="17dp"/>
+
 </RelativeLayout>

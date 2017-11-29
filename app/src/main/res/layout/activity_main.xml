@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/cardview_dark_background"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:weightSum="1">
-
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
+    android:orientation="horizontal"
+    android:padding="16dp"
+    android:weightSum="1">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
@@ -23,4 +23,5 @@
         android:layout_marginTop="68dp"
         android:layout_below="@+id/recyclerView"
         android:layout_centerHorizontal="true"/>
+
 </RelativeLayout>
