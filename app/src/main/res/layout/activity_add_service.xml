@@ -5,52 +5,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/cardview_dark_background"
     tools:context="com.example.alec.MaintenanceKeeper.AddServiceActivity">
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/etService"
         android:layout_marginTop="7dp"
         android:text="Enter Service:"
         android:textColor="@android:color/background_light"
         android:textSize="17sp"
-        android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="31dp"/>
+        tools:layout_editor_absoluteX="31dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="7dp"/>
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/etService"
-        android:layout_marginStart="7dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="21dp"
         android:text="Enter Service Date:"
         android:textColor="@android:color/background_light"
         android:textSize="17sp"
-        android:textStyle="bold"/>
+        android:layout_below="@+id/etService"
+        android:layout_alignStart="@+id/textView2"/>
 
     <EditText
         android:id="@+id/etService"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/textView6"
         android:layout_alignStart="@+id/textView6"
         android:layout_below="@+id/textView2"
-        android:layout_marginTop="12dp"
-        android:maxLength="25"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
         android:background="@color/colorLightGrey"
         android:ems="10"
         android:inputType="textPersonName"
+        android:maxLength="25"
         android:text="Oil Change"
         android:textAppearance="@style/TextAppearance.AppCompat"
         android:textColor="@color/cardview_dark_background"
-        android:textSize="17sp"
-        android:textStyle="bold"/>
+        android:textSize="17sp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
