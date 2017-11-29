@@ -28,7 +28,6 @@ public class AddServiceActivity extends AppCompatActivity
     private String dateChosen;
     private CalendarView calendarView;
 
-
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)

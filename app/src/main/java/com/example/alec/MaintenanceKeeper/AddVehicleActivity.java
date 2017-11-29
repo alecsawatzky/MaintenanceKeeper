@@ -41,7 +41,7 @@ public class AddVehicleActivity extends AppCompatActivity
             @Override
             public void onClick(View view)
             {
-                if ( !etMake.getText().toString().trim().equals("") && !etModel.getText().toString().trim().equals("") && !etYear.getText().toString().trim().equals(""))
+                if (!etMake.getText().toString().trim().equals("") && !etModel.getText().toString().trim().equals("") && !etYear.getText().toString().trim().equals(""))
                 {
                     Vehicle vehicle = new Vehicle(etMake.getText().toString(), etModel.getText().toString(), etYear.getText().toString());
                     dbReference.push().setValue(vehicle);

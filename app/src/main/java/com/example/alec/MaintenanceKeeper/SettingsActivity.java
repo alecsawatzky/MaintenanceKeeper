@@ -24,18 +24,17 @@ public class SettingsActivity extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        setupActionBar();
 
         sharedPreferences = getSharedPreferences("general prefs", MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
-        setupActionBar();
-
         fontSizeSpinner = (Spinner) findViewById(R.id.spFontSize);
         fontColorSpinner = (Spinner) findViewById(R.id.spFontColor);
 
-
         fontSizeAdapter = ArrayAdapter.createFromResource(this, R.array.fontSizeArray, R.layout.support_simple_spinner_dropdown_item);
         fontSizeSpinner.setAdapter(fontSizeAdapter);
+
         fontSizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
         {
             @Override

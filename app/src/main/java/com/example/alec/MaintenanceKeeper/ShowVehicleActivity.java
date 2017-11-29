@@ -8,9 +8,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -19,11 +19,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
@@ -44,7 +43,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private LinearLayoutManager mLinearLayoutManager;
     private DatabaseReference mFirebaseDatabaseReference;
     private GoogleApiClient mGoogleApiClient;
-    private FirebaseRecyclerAdapter<Vehicle, VehicleViewHolder> mFirebaseAdapter;
     private ArrayList<Service> services;
     private List<String> keys;
     private ListView listView;
@@ -55,24 +53,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     private SharedPreferences sharedPreferences;
     private int fontColor;
     private int fontSize;
-
-    public static class VehicleViewHolder extends RecyclerView.ViewHolder
-    {
-        private List<Vehicle> vehicles;
-        private CardView cv;
-        private TextView make;
-        private TextView model;
-        private ImageView vehiclePhoto;
-        private Button removeVehicle;
-
-        VehicleViewHolder(View itemView)
-        {
-            super(itemView);
-            cv = (CardView) itemView.findViewById(R.id.cv);
-            make = (TextView) itemView.findViewById(R.id.tvMake);
-            model = (TextView) itemView.findViewById(R.id.tv_model);
-        }
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -89,7 +69,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
         tvYear = (TextView) findViewById(R.id.tvYear);
         listView = (ListView) findViewById(R.id.list_view);
         removeVehicle = (Button) findViewById(R.id.btnRemoveVehicle);
-
         database = FirebaseDatabase.getInstance();
 
         removeVehicle.setOnClickListener(new View.OnClickListener()
@@ -108,7 +87,10 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult)
     {
-
+        // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+        // be available.
+        Log.d("Error", "onConnectionFailed:" + connectionResult);
+        Toast.makeText(this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -120,7 +102,8 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
+        switch (item.getItemId())
+        {
             case R.id.remove_vehicle_menu:
                 database.getReference("Vehicles/" + getIntent().getStringExtra("id")).removeValue();
                 this.finish();
@@ -178,7 +161,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                     }
                 });
 
-
                 if (tt != null) {
                     tt.setText(o.getName());
                     tt.setTextColor(fontColor);
@@ -231,13 +213,17 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                         }
                     }
                 }
+
                 adapter = new ItemAdapter(ShowVehicleActivity.this, R.id.list_view, services);
                 listView.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                // An unresolvable error has occurred and Google APIs (including Sign-In) will not
+                // be available.
+                Log.d("Error", "onDataChangeFailed:" + databaseError);
+                Toast.makeText(ShowVehicleActivity.this, "Google Play Services error.", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -273,7 +259,6 @@ public class ShowVehicleActivity extends AppCompatActivity implements GoogleApiC
                 fontColor = Color.GRAY;
                 break;
         }
-
 
         adapter = new ItemAdapter(ShowVehicleActivity.this, R.id.list_view, services);
         listView.setAdapter(adapter);

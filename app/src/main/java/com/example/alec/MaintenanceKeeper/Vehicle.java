@@ -35,7 +35,6 @@ public class Vehicle
         return year;
     }
 
-
     public void setYear(String year) {
         this.year = year;
     }
@@ -51,5 +50,4 @@ public class Vehicle
     public void setModel(String model) {
         this.model = model;
     }
-
 }
