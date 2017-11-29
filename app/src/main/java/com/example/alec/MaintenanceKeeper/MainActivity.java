@@ -58,8 +58,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
-        implements GoogleApiClient.OnConnectionFailedListener
+public class MainActivity extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener
 {
     public static class VehicleViewHolder extends RecyclerView.ViewHolder
     {
@@ -79,13 +78,10 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    // FireBase instance variables
     private FirebaseAuth mFirebaseAuth;
     private FirebaseUser mFirebaseUser;
-
     private RecyclerView recyclerView;
     private FirebaseRecyclerAdapter<Vehicle, VehicleViewHolder> mFirebaseAdapter;
-
     private ArrayList<Vehicle> vehicles;
     private static final String TAG = "MainActivity";
     public static final String VEHICLES = "Vehicles";
@@ -93,10 +89,8 @@ public class MainActivity extends AppCompatActivity
     private String mUsername;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
-
     private LinearLayoutManager mLinearLayoutManager;
     private ProgressBar progressBar;
-
     private DatabaseReference mFirebaseDatabaseReference;
     private Vehicle vehicle;
     private SharedPreferences sharedPreferences;
