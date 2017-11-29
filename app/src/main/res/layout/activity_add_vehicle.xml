@@ -32,8 +32,7 @@
         android:layout_marginTop="16dp"
         android:text="Chose Vehicle Model:"
         android:textColor="@android:color/background_light"
-        android:textSize="17sp"
-        />
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/etMake"
@@ -77,8 +76,7 @@
         android:layout_marginTop="26dp"
         android:text="Chose Vehicle Year:"
         android:textColor="@android:color/background_light"
-        android:textSize="17sp"
-        />
+        android:textSize="17sp"/>
 
     <EditText
         android:id="@+id/tvYear"
