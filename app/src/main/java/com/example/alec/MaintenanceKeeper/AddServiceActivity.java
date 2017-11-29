@@ -1,12 +1,8 @@
 package com.example.alec.MaintenanceKeeper;
 
 import android.content.Intent;
-import android.icu.util.Calendar;
-import android.icu.util.TimeZone;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -18,6 +14,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class AddServiceActivity extends AppCompatActivity
 {
     private FirebaseDatabase database;
@@ -28,7 +26,6 @@ public class AddServiceActivity extends AppCompatActivity
     private String dateChosen;
     private CalendarView calendarView;
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -44,7 +41,7 @@ public class AddServiceActivity extends AppCompatActivity
         database = FirebaseDatabase.getInstance();
         dbReference = database.getReference("Vehicles/" + vehicleKey + "/services");
 
-        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        Calendar calendar = Calendar.getInstance();
 
         dateChosen = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH)) + "-" + String.valueOf(calendar.get(Calendar.MONTH) + 1) + "-" + String.valueOf(calendar.get(Calendar.YEAR));
 
