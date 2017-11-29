@@ -13,11 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="19dp"
-        android:text="Enter Service Type:"
+        android:layout_alignStart="@+id/etService"
+        android:layout_marginTop="7dp"
+        android:text="Enter Service:"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
+        android:textSize="17sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="31dp"/>
@@ -26,50 +26,71 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:layout_marginTop="29dp"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/etService"
+        android:layout_marginStart="7dp"
+        android:layout_marginTop="10dp"
         android:text="Enter Service Date:"
         android:textColor="@android:color/background_light"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:layout_below="@+id/etService"
-        android:layout_alignParentStart="true"/>
+        android:textSize="17sp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/etService"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
-        android:background="#333333"
+        android:layout_alignEnd="@+id/textView6"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_below="@+id/textView2"
+        android:layout_marginTop="12dp"
+        android:maxLength="25"
+        android:background="@color/colorLightGrey"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Oil Change"
         android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_below="@+id/textView2"
-        android:layout_alignStart="@+id/textView6"
-        android:layout_marginTop="30dp"/>
+        android:textColor="@color/cardview_dark_background"
+        android:textSize="17sp"
+        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/etDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#333333"
-        android:ems="10"
-        android:inputType="date"
-        android:text="30-10-2017"
-        android:textAppearance="@style/TextAppearance.AppCompat"
-        android:textColor="@color/colorPrimaryDark"
-        android:layout_marginTop="31dp"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:weightSum="1"
         android:layout_below="@+id/textView6"
-        android:layout_alignStart="@+id/textView6"/>
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="19dp">
 
-    <Button
-        android:id="@+id/btnAddService"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add Service"
-        android:layout_marginTop="26dp"
-        android:layout_below="@+id/etDate"
-        android:layout_alignStart="@+id/etDate"/>
+        <ScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:orientation="vertical">
+
+                <CalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/colorLightGrey"/>
+
+                <Button
+                    android:id="@+id/btnAddService"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignStart="@+id/etDate"
+                    android:layout_below="@+id/etDate"
+                    android:layout_marginTop="26dp"
+                    android:text="Add Service"/>
+            </LinearLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
 </RelativeLayout>
 
