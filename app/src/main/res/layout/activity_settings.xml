@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.alec.MaintenanceKeeper.SettingsActivity"
-android:background="@color/cardview_light_background">
+    android:background="@color/colorLightGrey">
 
 
     <TextView
@@ -56,10 +56,11 @@ android:background="@color/cardview_light_background">
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="11dp"
         android:text="Visual Settings:"
-        android:textSize="18sp"/>
+        android:textSize="18sp"
+        android:textStyle="bold"/>
 
 </RelativeLayout>
