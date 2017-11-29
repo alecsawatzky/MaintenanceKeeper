@@ -88,10 +88,9 @@ public class MainActivity extends AppCompatActivity
 
     private ArrayList<Vehicle> vehicles;
     private static final String TAG = "MainActivity";
-    public static final String MESSAGES_CHILD = "Vehicles";
+    public static final String VEHICLES = "Vehicles";
     public static final String ANONYMOUS = "anonymous";
     private String mUsername;
-    private String mPhotoUrl;
     private SharedPreferences mSharedPreferences;
     private GoogleApiClient mGoogleApiClient;
 
@@ -111,6 +110,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
         // Set default username is anonymous.
         mUsername = ANONYMOUS;
 
@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity
             }
         };
 
-        DatabaseReference vehiclesRef = mFirebaseDatabaseReference.child(MESSAGES_CHILD);
+        DatabaseReference vehiclesRef = mFirebaseDatabaseReference.child(VEHICLES);
         FirebaseRecyclerOptions<Vehicle> options =
                 new FirebaseRecyclerOptions.Builder<Vehicle>()
                         .setQuery(vehiclesRef, parser)
@@ -159,7 +159,6 @@ public class MainActivity extends AppCompatActivity
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
                 return new VehicleViewHolder(inflater.inflate(R.layout.card_item, viewGroup, false));
             }
-
 
             @Override
             protected void onBindViewHolder(final VehicleViewHolder viewHolder,
@@ -218,10 +217,6 @@ public class MainActivity extends AppCompatActivity
         } else
         {
             mUsername = mFirebaseUser.getDisplayName();
-            if (mFirebaseUser.getPhotoUrl() != null)
-            {
-                mPhotoUrl = mFirebaseUser.getPhotoUrl().toString();
-            }
         }
     }
 
@@ -268,15 +263,12 @@ public class MainActivity extends AppCompatActivity
      */
     public Action getIndexApiAction()
     {
-        return Actions.newView("Main", "http://[ENTER-YOUR-URL-HERE]");
+        return Actions.newView("Main", "http://google.com");
     }
 
     @Override
     public void onStop()
     {
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
         FirebaseUserActions.getInstance().end(getIndexApiAction());
         super.onStop();
     }
