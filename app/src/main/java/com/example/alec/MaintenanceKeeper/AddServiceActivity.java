@@ -52,7 +52,6 @@ public class AddServiceActivity extends AppCompatActivity
             @Override
             public void onSelectedDayChange(@NonNull CalendarView calendarView, int i, int i1, int i2) {
                 dateChosen = String.valueOf(i2) + "-" + String.valueOf(i1 + 1) + "-" + String.valueOf(i);
-                Toast.makeText(AddServiceActivity.this, dateChosen, Toast.LENGTH_SHORT).show();
             }
         });
 
