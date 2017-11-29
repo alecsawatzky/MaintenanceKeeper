@@ -11,6 +11,8 @@ import android.widget.Toast;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Calendar;
+
 public class AddVehicleActivity extends AppCompatActivity
 {
     private FirebaseDatabase database;
@@ -34,6 +36,10 @@ public class AddVehicleActivity extends AppCompatActivity
         etMake = (EditText) findViewById(R.id.etMake);
         etModel = (EditText) findViewById(R.id.etModel);
         etYear = (EditText) findViewById(R.id.tvYear);
+
+        Calendar calendar = Calendar.getInstance();
+
+        etYear.setText(String.valueOf(calendar.get(Calendar.YEAR)));
 
         // Write to the database.
         btnAddVehicle.setOnClickListener(new View.OnClickListener()
