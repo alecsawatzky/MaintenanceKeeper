@@ -28,7 +28,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:layout_below="@+id/textView2"
-        android:layout_alignParentStart="true"/>
+        android:layout_alignStart="@+id/textView2"
+        android:layout_alignEnd="@+id/textView6"/>
 
     <TextView
         android:id="@+id/textView6"
@@ -47,9 +48,10 @@
         android:id="@+id/spFontColor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
         android:layout_below="@+id/textView6"
-        android:layout_marginTop="37dp"/>
+        android:layout_marginTop="37dp"
+        android:layout_alignStart="@+id/textView6"
+        android:layout_alignEnd="@+id/textView6"/>
 
     <TextView
         android:id="@+id/textView4"
